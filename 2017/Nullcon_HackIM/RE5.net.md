@@ -224,6 +224,7 @@ There was few traps to get this program.
 		});
 	}
     ```
+    
     This method check if the debugger is attached or not and fill a byte array. When we find the key, the program was run with a debugger attached, it is not the case for the normal program execution, we should use an empty 8 bit array to have the valid value. 
 
 After running this program, we obtain the  following string `I'm On top of the World!`
