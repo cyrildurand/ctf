@@ -53,7 +53,7 @@ The project opens in Visual Studio and we can debug source code.
 
 It seems that everything happens in the `smethod_10` method 
 
-```
+```cs
 	private static object smethod_10(string string_0)
 	{
 		object object_ = Class0.smethod_27(Class0.smethod_25(Class0.smethod_8("sF56+GtNmLS3QZQdRrONb4h+iIsJ2YoI4bTUeVncdqhaI6nd5nhepA=="), Class0.smethod_1("tGixy7PvoLRoluCKauSB/PT3apjwnBNKxncF5ces7pk=")), Class0.smethod_1("X8UiICXNdI+fnPI4rtvBfJHOXc6B8MF+"));
@@ -122,7 +122,7 @@ We now know that the `smethod_10` will test the input string and return a `boole
 
 Let's look at the last instruction of the `smethod_10` method. 
 
-```
+```cs
 		return Class0.smethod_18(object_6, Class0.smethod_1("Xcbb/pbHUSCojezJ2UYz9Q=="), new object[]
 		{
 			Class0.smethod_1("O1JOX5HWzT46DaPMhiA61xBtGMdyLvmqnWXjZ6K5yzs7qlTongtobDY52nC9V3pXL32/V22oxAw=")
@@ -141,7 +141,7 @@ The last instruction tells us that we try to compare `object_6` to a constant !
 
 `object_6` is 
 
-```
+```cs
 		object object_6 = Class0.smethod_24(Class0.smethod_8("tSHlfslgRMUbRTxbYM+W0dcx6f7fkn8L"), Class0.smethod_1("W7MFjakEUp2yyRZba0h+GxX/KFeJ+BzU"), new object[]
 		{
 			Class0.smethod_19(obj7, Class0.smethod_1("/eKrXl6hP5Oqnaydmee2jw=="))
@@ -154,7 +154,7 @@ The watch console help us decode the obfuscated string.
 
 We obtain this pseudo code 
 
-```
+```cs
 		object object_6 = Class0.smethod_24(System.Convert, ToBase64String, new object[]
 		{
 			Class0.smethod_19(obj7, ToArray)
@@ -169,7 +169,7 @@ AES is a symmetric encryption algorithm, it means we can get the decoded value i
 
 After digging the same way in the source code, we obtain the AES key and can create the following program to retrieve the flag.
 
-```
+```cs
 static void Main(string[] args)
 {
     var obj = "Hello My Dear!App2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3b3d382fb8158bab";
@@ -206,7 +206,7 @@ There was few traps to get this program.
 
 1. We see that one part of the AES key is the fully qualified assembly name of the application. The original application is signed, so we have to use the original PublicKeyToken of the application2. 
 2. `obj2` is a Byte array which is the result of the smethod_7 method, which after simplification is :  
-    ```
+    ```cs
 	private static object smethod_7()
 	{
 		object obj = Class0.smethod_24({System.Convert}, "ToByteArray", new object[]
